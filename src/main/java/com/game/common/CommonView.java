@@ -23,4 +23,13 @@ public class CommonView {
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}
+	
+	public static void forwardMessage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String path = "/WEB-INF/views/common/message.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(path);
+		rd.forward(request, response);
+		
+	}
+	
 }

@@ -20,6 +20,10 @@ ${user.CREDAT} <br>
 ${user.CRETIM} <br>
 ${user.LMODAT} <br>
 ${user.LMOTIM} <br>
-
+<button onclick="location.href='/user-info/update?uiNum=${user.UI_NUM}'">수정</button>
+<form action="/user-info/delete" method="post">
+<input type="hidden" name="UI_NUM" value="${user.UI_NUM}">
+<button>삭제</button>
+</form>
 </body>
 </html>

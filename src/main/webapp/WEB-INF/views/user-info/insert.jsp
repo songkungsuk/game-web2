@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-				ps.setString(1, userInfo.get("UI_NAME"));
-				ps.setString(2, userInfo.get("UI_ID"));
-				ps.setString(3, userInfo.get("UI_PWD"));
-				ps.setString(4, userInfo.get("UI_IMG_PATH"));
-				ps.setString(5, userInfo.get("UI_DESC"));
-				ps.setString(6, userInfo.get("UI_BIRTH"));
-				
+
+	<form action="/user-info/insert" method="post">
+		<input type="text" name="UI_NAME" placeholder="이름"> <br>
+		<input type="text" name="UI_ID" placeholder="아이디"> <br>
+		 <input	type="text" name="UI_PWD" placeholder="비밀번호"> <br> 
+		<input	type="text" name="UI_IMG_PATH" placeholder="경로"> <br> 
+		<textarea name="UI_DESC" placeholder="소개"></textarea> <br>
+		<input	type="date" name="UI_BIRTH" placeholder="생년월일"> <br>
+		<button>등록</button>
+		<button type="reset">취소</button>
+
+	</form>
 </body>
 </html>

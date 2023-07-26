@@ -39,5 +39,11 @@
 		</c:forEach>
 		<tr><td><a href="/user-info/insert">등록</a></td></tr>
 	</table>
+	
+	<h1><%= request.getServerPort() %></h1>
+	<h1><%= request.getProtocol() %></h1>
+	<h1><%= request.getRemoteAddr() %></h1>
+	<h1><%= request.getMethod() %></h1>
+	
 </body>
 </html>
