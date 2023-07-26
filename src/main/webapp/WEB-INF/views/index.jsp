@@ -12,7 +12,7 @@
 	${user2.UI_NAME}님 안녕하세요.
 	<button onclick="location.href='/user-info/logout'">로그아웃</button>
 </c:if>
-<c:if test="${user2 ==null}">
+<c:if test="${user2 == null}">
 	<button onclick="location.href='/user-info/login'">로그인</button>
 </c:if>
 </body>
