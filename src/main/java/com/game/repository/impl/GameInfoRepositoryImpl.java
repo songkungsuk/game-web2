@@ -14,7 +14,7 @@ import com.game.repository.GameInfoRepository;
 public class GameInfoRepositoryImpl implements GameInfoRepository {
 
 	@Override
-	public List<Map<String, String>> selectGameList() {
+	public List<Map<String, String>> selectGameList(Map<String, String> g) {
 		List<Map<String, String>> games = new ArrayList<Map<String,String>>();
 		String sql = "SELECT * FROM GAME_INFO";
 		try (Connection con = DBcon.getCon()){
@@ -124,7 +124,7 @@ public class GameInfoRepositoryImpl implements GameInfoRepository {
 //		System.out.println(gameRepo.insertGameContent(gameInfo));
 //		System.out.println(gameRepo.updateGameContent(gameInfo));
 //		System.out.println(gameRepo.deleteGameContent("1"));
-		System.out.println(gameRepo.selectGameList());
+		System.out.println(gameRepo.selectGameList(null));
 		
 	}
 }

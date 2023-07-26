@@ -14,7 +14,7 @@ import com.game.repository.UserInfoRepository;
 public class UserInfoRepositoryImpl implements UserInfoRepository {
 
 	@Override
-	public List<Map<String, String>> selectUserInfoList() {
+	public List<Map<String, String>> selectUserInfoList(Map<String, String> userInfo) {
 		String sql = "SELECT * FROM USER_INFO WHERE 1=1";
 		List<Map<String, String>> userInfoList = new ArrayList<>();
 		try (Connection con = DBcon.getCon()){
@@ -154,7 +154,7 @@ public class UserInfoRepositoryImpl implements UserInfoRepository {
 //		System.out.println(urRepo.insertUserInfo(user));
 //		System.out.println(urRepo.updateUserInfo(user));
 //		System.out.println(urRepo.deleteUserInfo("1"));
-		System.out.println(urRepo.selectUserInfoList());
+		System.out.println(urRepo.selectUserInfoList(null));
 		System.out.println(urRepo.selectUserInfo("1"));
 		
 	}

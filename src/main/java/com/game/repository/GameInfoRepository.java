@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface GameInfoRepository {
-	List<Map<String, String>> selectGameList();
+	List<Map<String, String>> selectGameList(Map<String, String> games);
 	
 	Map<String, String> selectGame(String gameNum);
 	
