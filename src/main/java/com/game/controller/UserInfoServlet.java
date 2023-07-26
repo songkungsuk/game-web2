@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.game.common.CommonView;
 import com.game.service.UserInfoService;
@@ -44,7 +45,14 @@ public class UserInfoServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
+		Map<String, String> user2 = new HashMap<String, String>();
+		user2.put("UI_NAME", request.getParameter("UI_NAME"));
+		user2.put("UI_ID", request.getParameter("UI_ID"));
+		user2.put("UI_PWD", request.getParameter("UI_PWD"));
+
+		
 		String cmd = CommonView.getcmd(request);
 		if("insert".equals(cmd)) {
 			Map<String, String> user = new HashMap<String, String>();
@@ -65,16 +73,12 @@ public class UserInfoServlet extends HttpServlet {
 			}
 		}
 		if("update".equals(cmd)) {
-			Map<String, String> user = new HashMap<String, String>();
-			user.put("UI_NAME", request.getParameter("UI_NAME"));
-			user.put("UI_ID", request.getParameter("UI_ID"));
-			user.put("UI_PWD", request.getParameter("UI_PWD"));
-			user.put("UI_IMG_PATH", request.getParameter("UI_IMG_PATH"));
-			user.put("UI_DESC", request.getParameter("UI_DESC"));
-			user.put("UI_BIRTH", request.getParameter("UI_BIRTH").replace("-", ""));
-			user.put("UI_NUM", request.getParameter("UI_NUM"));
-			int result = urService.updateUserInfo(user);
-			
+
+			int result = urService.updateUserInfo(user2);
+			user2.put("UI_BIRTH", request.getParameter("UI_BIRTH").replace("-", ""));
+			user2.put("UI_IMG_PATH", request.getParameter("UI_IMG_PATH"));
+			user2.put("UI_DESC", request.getParameter("UI_DESC"));
+			user2.put("UI_NUM", request.getParameter("UI_NUM"));
 			request.setAttribute("msg", "유저 수정 성공");
 			request.setAttribute("url", "/user-info/list");
 			
@@ -93,6 +97,16 @@ public class UserInfoServlet extends HttpServlet {
 			if(result != 1) {
 				request.setAttribute("msg", "유저 삭제 실패");
 				request.setAttribute("url", "/user-info/list");
+			}
+		}
+		if("login".equals(cmd)) {
+			request.setAttribute("msg", "아이디나 비밀번호를 확인해주세요");
+			request.setAttribute("url", "/user-info/login");
+			HttpSession session = request.getSession();
+			boolean login = urService.login(user2, session);
+			if(login) {
+				request.setAttribute("msg", "로그인성공");
+				request.setAttribute("url", "/");
 			}
 		}
 		

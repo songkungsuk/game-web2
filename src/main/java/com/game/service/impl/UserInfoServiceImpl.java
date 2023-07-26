@@ -3,6 +3,8 @@ package com.game.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.game.repository.UserInfoRepository;
 import com.game.repository.impl.UserInfoRepositoryImpl;
 import com.game.service.UserInfoService;
@@ -38,6 +40,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public int deleteUserInfo(String userInfo) {
 		
 		return urRepo.deleteUserInfo(userInfo);
+	}
+
+	@Override
+	public boolean login(Map<String, String> userInfo, HttpSession session) {
+		
+		return urRepo.login(userInfo, session);
 	}
 
 }
