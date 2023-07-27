@@ -75,7 +75,7 @@ public class BoardInfoRepositoryImpl implements BoardInfoRepository {
 	@Override
 	public int insertBoardInfo(Map<String, String> board) {
 		String sql ="INSERT INTO board_info(BI_TITLE, BI_CONTENT, UI_NUM, CREDAT, CRETIM, LMODAT, LMOTIM)\r\n"
-				+ "VALUES(?,?, ?, DATE_FORMAT(NOW(), '%Y%n%d'), DATE_FORMAT(NOW(), '%H%i%s'), DATE_FORMAT(NOW(), '%Y%n%d'), DATE_FORMAT(NOW(), '%H%i%s'))";
+				+ "VALUES(?,?, ?, DATE_FORMAT(NOW(), '%Y%m%d'), DATE_FORMAT(NOW(), '%H%i%s'), DATE_FORMAT(NOW(), '%Y%m%d'), DATE_FORMAT(NOW(), '%H%i%s'))";
 		
 		try (Connection con = DBcon.getCon()){
 			try(PreparedStatement ps = con.prepareStatement(sql)){
@@ -93,7 +93,7 @@ public class BoardInfoRepositoryImpl implements BoardInfoRepository {
 
 	@Override
 	public int updateBoardInfo(Map<String, String> board) {
-		String sql = "UPDATE board_info SET BI_TITLE=?, BI_CONTENT=?, UI_NUM=?, LMODAT=DATE_FORMAT(NOW(), '%Y%n%d'), LMOTIM = DATE_FORMAT(NOW(), '%H%i%s') WHERE BI_NUM = ?";
+		String sql = "UPDATE board_info SET BI_TITLE=?, BI_CONTENT=?, UI_NUM=?, LMODAT=DATE_FORMAT(NOW(), '%Y%m%d'), LMOTIM = DATE_FORMAT(NOW(), '%H%i%s') WHERE BI_NUM = ?";
 		
 		try (Connection con = DBcon.getCon()){
 			try(PreparedStatement ps = con.prepareStatement(sql)){
@@ -131,6 +131,7 @@ public class BoardInfoRepositoryImpl implements BoardInfoRepository {
 		board.put("biContent", "sharks");
 		board.put("uiNum", "6");
 		board.put("biNum", "3");
+		
 //		System.out.println(boardinfo.selectBoardInfo("3"));
 //		System.out.println(boardinfo.selectBoardInfoList(board));
 //		System.out.println(boardinfo.insertBoardInfo(board));
