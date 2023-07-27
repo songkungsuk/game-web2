@@ -42,10 +42,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return urRepo.deleteUserInfo(userInfo);
 	}
 
+
 	@Override
-	public boolean login(Map<String, String> userInfo, HttpSession session) {
-		
-		return urRepo.login(userInfo, session);
+	public Map<String, String> login(String uiId) {
+		return urRepo.selectUserInfoById(uiId);
 	}
 
 }

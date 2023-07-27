@@ -18,5 +18,5 @@ public interface UserInfoRepository {
 	
 	int deleteUserInfo(String userInfo);
 	
-	boolean login(Map<String, String> userInfo, HttpSession session);
+	
 }

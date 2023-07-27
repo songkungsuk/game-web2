@@ -39,6 +39,13 @@ public class UserInfoServlet extends HttpServlet {
 		if ("update".equals(cmd)) {
 			String uiNum = request.getParameter("uiNum");
 			request.setAttribute("user", urService.selectUserInfo(uiNum));
+		}else if ("logout".equals(cmd)) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			request.setAttribute("msg", "logout 되셧습니다");
+			request.setAttribute("url", "/user-info/login");
+			CommonView.forwardMessage(request, response);
+			return;
 		}
 
 		CommonView.forward(request, response);
@@ -98,11 +105,18 @@ public class UserInfoServlet extends HttpServlet {
 			request.setAttribute("msg", "아이디나 비밀번호를 확인해주세요");
 			request.setAttribute("url", "/user-info/login");
 			HttpSession session = request.getSession();
-			boolean login = urService.login(user, session);
-			if (login) {
-				request.setAttribute("msg", "로그인성공");
-				request.setAttribute("url", "/");
+			String uiId = request.getParameter("UI_ID");
+			String uiPwd = request.getParameter("UI_PWD");
+			Map<String, String> ui = urService.login(uiId);
+			if(ui != null) {
+				String dbUI_PWD = ui.get("UI_PWD");
+				if(uiPwd.equals(dbUI_PWD)) {
+					request.setAttribute("msg", "로그인이 성공하셧습니다.");
+					request.setAttribute("url", "/user-info/");
+					session.setAttribute("user", ui);
+				}
 			}
+			
 		}
 
 		CommonView.forwardMessage(request, response);

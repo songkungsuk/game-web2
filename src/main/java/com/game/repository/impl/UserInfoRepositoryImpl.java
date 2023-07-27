@@ -14,7 +14,7 @@ import com.game.common.DBcon;
 import com.game.repository.UserInfoRepository;
 
 public class UserInfoRepositoryImpl implements UserInfoRepository {
-	UserInfoRepository urRepo = new UserInfoRepositoryImpl();
+	
 	@Override
 	public List<Map<String, String>> selectUserInfoList(Map<String, String> userInfo) {
 		String sql = "SELECT * FROM USER_INFO WHERE 1=1";
@@ -191,17 +191,5 @@ public class UserInfoRepositoryImpl implements UserInfoRepository {
 		return null;
 	}
 
-	@Override
-	public boolean login(Map<String, String> userInfo, HttpSession session) {
-		String uiId = userInfo.get("uiId");
-		Map<String, String> tmp = urRepo.selectUserInfoById(uiId);
-		if(tmp != null) {
-			String uiPwd = tmp.get("uiPwd");
-			if(uiPwd.equals(userInfo.get("uiPwd"))) {
-				session.setAttribute("user", tmp);
-				return true;
-			}
-		}
-		return false;
-	}
+
 }
