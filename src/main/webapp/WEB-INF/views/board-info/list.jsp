@@ -24,7 +24,7 @@
 				<c:forEach items="${boardList}" var="board">
 					<tr>
 						<td>${board.biNum}</td>
-						<td>${board.biTitle }</td>
+						<td><a href="/board-info/view?biNum=${board.biNum}">${board.biTitle }</a></td>
 						<td>${board.uiNum }</td>
 						<td>${board.credat }</td>
 					</tr>
